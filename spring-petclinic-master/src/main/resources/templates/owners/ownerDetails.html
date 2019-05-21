@@ -58,6 +58,7 @@
               <tr>
                 <th>Visit Date</th>
                 <th>Description</th>
+                <th>Gallery</th>
               </tr>
             </thead>
             <tr th:each="visit : ${pet.visits}">
@@ -71,6 +72,7 @@
               <td><a
                 th:href="@{{ownerId}/pets/{petId}/visits/new(ownerId=${owner.id},petId=${pet.id})}">Add
                   Visit</a></td>
+                  <td><a href="#">Ver</a></td>
             </tr>
           </table>
         </td>
