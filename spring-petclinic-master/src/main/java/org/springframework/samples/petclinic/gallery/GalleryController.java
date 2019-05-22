@@ -7,6 +7,7 @@ package org.springframework.samples.petclinic.gallery;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GalleryController {
     
-    @GetMapping({"/mascotitas","/algo"})
+    @GetMapping({"/galeria","/algo"})
     public String galley(){
-        
         return "gallerys/gallery";
     }
+   
 }
