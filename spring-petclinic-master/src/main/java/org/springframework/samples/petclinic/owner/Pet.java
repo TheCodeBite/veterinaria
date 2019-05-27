@@ -64,6 +64,9 @@ public class Pet extends NamedEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "petId", fetch = FetchType.EAGER)
     private Set<Visit> visits = new LinkedHashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petId", fetch = FetchType.EAGER)
+    private Set<Gallery> gallery = new LinkedHashSet<>();
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -111,4 +114,18 @@ public class Pet extends NamedEntity {
         visit.setPetId(this.getId());
     }
 
+    public void addImage(Gallery gallery) {
+        if (gallery.getPhoto() != null) {
+            getGalleryInternal().add(gallery);
+            getGalleryInternal().add(gallery);
+            gallery.setPetId(this.getId());
+        }
+    }
+
+    protected Set<Gallery> getGalleryInternal() {
+        if (this.gallery == null) {
+            this.gallery = new HashSet<>();
+        }
+        return this.gallery;
+    }
 }
