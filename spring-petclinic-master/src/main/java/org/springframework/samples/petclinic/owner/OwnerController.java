@@ -129,5 +129,11 @@ class OwnerController {
         mav.addObject(this.owners.findById(ownerId));
         return mav;
     }
-
+    
+    @GetMapping("/reportOwners")
+    public String processReporteDePropietarios(Owner owner, BindingResult result, Map<String, Object> model) {
+        Collection<Owner> results = this.owners.findOwners();
+        model.put("selections", results);
+        return "owners/reportOwners";
+    }
 }

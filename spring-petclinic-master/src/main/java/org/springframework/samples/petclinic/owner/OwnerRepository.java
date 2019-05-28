@@ -52,6 +52,10 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
     @Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
     @Transactional(readOnly = true)
     Owner findById(@Param("id") Integer id);
+    
+    @Query("Select owner from Owner owner")
+    @Transactional (readOnly= true)
+    Collection<Owner> findOwners();
 
     /**
      * Save an {@link Owner} to the data store, either inserting or updating it.
