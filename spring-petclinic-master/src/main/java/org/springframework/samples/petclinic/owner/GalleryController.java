@@ -33,14 +33,14 @@ public class GalleryController {
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
     private final PetRepository pets;
     private final OwnerRepository owners;
-    private final GalleryRepository gallerys;
+    private final GalleryRepository gallery;
     
     private static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/resources/imagesPets";
 
-    public GalleryController(PetRepository pets, OwnerRepository owners, GalleryRepository gallerys) {
+    public GalleryController(PetRepository pets, OwnerRepository owners, GalleryRepository gallery) {
         this.pets = pets;
         this.owners = owners;
-        this.gallerys = gallerys;
+        this.gallery = gallery;
     }
         
     @ModelAttribute("gallery")
@@ -49,18 +49,17 @@ public class GalleryController {
         model.put("pet",pet);
         Gallery gallery = new Gallery();
         pet.addImage(gallery);
-       
         return gallery;
     }
     
-    @GetMapping("/pets/{petId}/gallery")
+    @GetMapping("/pets/{petId}/gallerys")
     public String verAlbum(@PathVariable("petId") int petId, Map<String, Object> model) {
         Pet pet = this.pets.findById(petId);
         model.put("pet", pet);
-        return "gallery/petsGallery";
+        return "gallerys/gallery";
     }
     
-    @PostMapping("/pets/{petId}/gallery")
+    @PostMapping("/pets/{petId}/gallerys")
     public String processNewPhoto(@RequestParam("file") MultipartFile[]f,@Valid Gallery gallery, BindingResult result) {
         StringBuilder fileNames = new StringBuilder();
         if (result.hasErrors()) {
@@ -76,8 +75,8 @@ public class GalleryController {
                     Logger.getLogger(PetController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            this.gallerys.save(gallery);          
-            return "redirect:/owners/{ownerId}/pets/{petId}/album";           
+            this.gallery.save(gallery);          
+            return "redirect:/owners/{ownerId}/pets/{petId}/gallerys";           
         }
     }
    

@@ -73,7 +73,7 @@
                   Pet</a></td>
               <td><a th:href="@{{ownerId}/pets/{petId}/visits/new(ownerId=${owner.id},petId=${pet.id})}">Add
                   Visit</a></td>
-                  <td><a href="#">Ver</a></td>
+                  <td><a th:href="@{{ownerId}/pets/{petId}/gallery(ownerId=${owner.id},petId=${pet.id})}">Ver Galeria</a></td>
             </tr>
           </table>
         </td>
