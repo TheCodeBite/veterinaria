@@ -42,7 +42,7 @@ public class GalleryController {
         this.owners = owners;
         this.gallery = gallery;
     }
-        
+   
     @ModelAttribute("gallery")
     public Gallery loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model){
         Pet pet = this.pets.findById(petId);
@@ -53,7 +53,7 @@ public class GalleryController {
     }
     
     @GetMapping("/pets/{petId}/gallerys")
-    public String verAlbum(@PathVariable("petId") int petId, Map<String, Object> model) {
+    public String verGallery(@PathVariable("petId") int petId, Map<String, Object> model) {
         Pet pet = this.pets.findById(petId);
         model.put("pet", pet);
         return "gallerys/gallery";
