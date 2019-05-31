@@ -105,7 +105,7 @@ class OwnerController {
         model.addAttribute(owner);
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
-
+    
     @PostMapping("/owners/{ownerId}/edit")
     public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
         if (result.hasErrors()) {
@@ -129,5 +129,11 @@ class OwnerController {
         mav.addObject(this.owners.findById(ownerId));
         return mav;
     }
-
+    
+    @GetMapping("/reportOwners")
+    public String processReporteDePropietarios(Owner owner, BindingResult result, Map<String, Object> model) {
+        Collection<Owner> results = this.owners.findOwners();
+        model.put("selections", results);
+        return "owners/reportOwners";
+    }
 }

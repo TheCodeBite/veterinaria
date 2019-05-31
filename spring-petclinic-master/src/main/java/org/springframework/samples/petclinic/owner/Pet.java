@@ -64,6 +64,9 @@ public class Pet extends NamedEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "petId", fetch = FetchType.EAGER)
     private Set<Visit> visits = new LinkedHashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petId", fetch = FetchType.EAGER)
+    private Set<Gallery> gallery = new LinkedHashSet<>();
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -87,7 +90,7 @@ public class Pet extends NamedEntity {
     protected void setOwner(Owner owner) {
         this.owner = owner;
     }
-
+    
     protected Set<Visit> getVisitsInternal() {
         if (this.visits == null) {
             this.visits = new HashSet<>();
@@ -110,5 +113,36 @@ public class Pet extends NamedEntity {
         getVisitsInternal().add(visit);
         visit.setPetId(this.getId());
     }
+    
+    protected Set<Gallery> getGelleryInternal() {
+        if (this.gallery == null) {
+            this.gallery = new HashSet<>();
+        }
+        return this.gallery;
+    }
+    
+    public List<Gallery> getGallery(){
+        List<Gallery> sortedAlbum = new ArrayList<>(getGalleryInternal());
+        PropertyComparator.sort(sortedAlbum,new MutableSortDefinition("date", false, false));           
+        return Collections.unmodifiableList(sortedAlbum);
+    }
+    
+    protected void setAlbumInternal(Set<Gallery> gallery) {
+        this.gallery = gallery;
+    }
 
+    public void addImage(Gallery gallery) {
+        if (gallery.getPhoto() != null) {
+            getGalleryInternal().add(gallery);
+            getGalleryInternal().add(gallery);
+            gallery.setPetId(this.getId());
+        }
+    }
+
+    protected Set<Gallery> getGalleryInternal() {
+        if (this.gallery == null) {
+            this.gallery = new HashSet<>();
+        }
+        return this.gallery;
+    }
 }
