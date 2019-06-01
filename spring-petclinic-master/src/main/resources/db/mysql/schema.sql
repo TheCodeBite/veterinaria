@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS gallery (
 
 CREATE TABLE IF NOT EXISTS  users(
     id INT (4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name_ VARCHAR (30),
+    userName VARCHAR (30),
     lastName VARCHAR (30),
     email VARCHAR (30),
     password VARCHAR (30),
