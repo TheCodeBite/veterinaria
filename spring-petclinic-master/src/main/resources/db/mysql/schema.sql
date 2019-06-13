@@ -63,10 +63,28 @@ CREATE TABLE IF NOT EXISTS visits (
   description VARCHAR(255),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
+
 CREATE TABLE IF NOT EXISTS gallery (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   pet_id INT(4) UNSIGNED NOT NULL,
   photo VARCHAR(100),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS  users(
+    id INT (4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userName VARCHAR (30),
+    lastName VARCHAR (30),
+    email VARCHAR (30),
+    password VARCHAR (30),
+    status VARCHAR (30)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS  product(
+    id INT (4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR (30),
+    precio VARCHAR (30),
+    descripcion VARCHAR (30),
+    existencia VARCHAR (30)
 ) engine=InnoDB;
