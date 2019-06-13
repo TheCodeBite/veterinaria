@@ -8,8 +8,8 @@ and open the template in the editor.
       th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
     <body th:object="${pet}">
 
-        <h2>Galeria de <span th:text="${pet.name}"></span></h2>
-        <hr>
+        <h2>Álbum de <span th:text="${pet.name}"></span></h2>
+
 
         <form th:object="${gallery}" method="post" enctype="multipart/form-data">
             <div class="form-group has-feedback">
@@ -28,19 +28,7 @@ and open the template in the editor.
                 </div>
             </div>
         </form>
-        <hr>
-        <h1><center>Galleria</center></h1>
-        
-        <div clas="row">
-            <div style="margin-top: 10px" class="cold-md-4" th:each="photos : ${pet.gallery}">
-                <div class="card box-shadow">
-                    archivo: <span th:text="${photos.photo}"></span>
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 400px; width: 80%; display: block;" th:src="@{/resources/imagesPets/__${photos.photo}__}" data-holder-rendered="true">
-                
-              </div>
-            </div>
-        </div>
-        
+
         <script type="text/javascript">
             var customBtn=document.getElementById("custom-button");
             var customTxt=document.getElementById("custom-text");

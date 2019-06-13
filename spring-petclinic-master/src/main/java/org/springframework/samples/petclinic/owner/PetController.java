@@ -37,14 +37,10 @@ class PetController {
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
     private final PetRepository pets;
     private final OwnerRepository owners;
-    private final GalleryRepository gallerys;
-    private static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/resources/imagesPets";
-    
 
-    public PetController(PetRepository pets, OwnerRepository owners, GalleryRepository gallerys) {
+    public PetController(PetRepository pets, OwnerRepository owners) {
         this.pets = pets;
         this.owners = owners;
-        this.gallerys = gallerys;
     }
 
     @ModelAttribute("types")

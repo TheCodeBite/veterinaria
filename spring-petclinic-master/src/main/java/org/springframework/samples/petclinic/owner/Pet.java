@@ -90,7 +90,7 @@ public class Pet extends NamedEntity {
     protected void setOwner(Owner owner) {
         this.owner = owner;
     }
-    
+
     protected Set<Visit> getVisitsInternal() {
         if (this.visits == null) {
             this.visits = new HashSet<>();
@@ -112,23 +112,6 @@ public class Pet extends NamedEntity {
     public void addVisit(Visit visit) {
         getVisitsInternal().add(visit);
         visit.setPetId(this.getId());
-    }
-    
-    protected Set<Gallery> getGelleryInternal() {
-        if (this.gallery == null) {
-            this.gallery = new HashSet<>();
-        }
-        return this.gallery;
-    }
-    
-    public List<Gallery> getGallery(){
-        List<Gallery> sortedAlbum = new ArrayList<>(getGalleryInternal());
-        PropertyComparator.sort(sortedAlbum,new MutableSortDefinition("date", false, false));           
-        return Collections.unmodifiableList(sortedAlbum);
-    }
-    
-    protected void setAlbumInternal(Set<Gallery> gallery) {
-        this.gallery = gallery;
     }
 
     public void addImage(Gallery gallery) {
