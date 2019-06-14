@@ -31,16 +31,21 @@ and open the template in the editor.
                         <tr>
                           <th>Existencia</th>
                           <td th:text="*{existencia}" /></td>
-                        </tr>                      
+                        </tr>
+                         <tr>
+                          <th>Fotografia</th>
+                          <td th:text="*{imagenes}" /></td>
+                        </tr> 
                     </table>
                     <a class="btn btn-default" th:href="@{/products/__${product.id}__/edit}" th:text="Actualizar"/></a>
                     <a class="btn btn-default" th:href="@{/products}" th:text="Listado"/></a>
                 </div>
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <img src="https://dev-res.thumbr.io/libraries/53/38/41/lib/1470045098964_1.jpg?size=854x493s&ext=jpg">
-                    </div>
-                </div>
+                        <td class="text-center"> <img style= "width:180px; shadow: 10px 20px 40px#000; border-radius: 50%;" th:src="@{/resources/imagesProduct/__${product.imagenes}__}"/>                             
+                        </td>
+                    </div>                   
+                </div>         
             </div>
     	</div>
     </body>

@@ -28,6 +28,7 @@ import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Person;
+import static org.thymeleaf.util.StringUtils.append;
 
 @Entity
 @Table(name = "product")
@@ -67,6 +68,10 @@ public class Product {
     @NotEmpty
     private String existencia;
     
+    @Column (name = "imagenes")
+    @NotEmpty
+    private String imagenes; 
+    
 
     public String getNombre() {
         return nombre;
@@ -88,6 +93,14 @@ public class Product {
         return precio;
     }
 
+    public void setImagenes(String imagenes) {
+        this.imagenes = imagenes;
+    }
+    
+     public String getImagenes() {
+        return imagenes;
+    }
+       
     public void setPrecio(String precio) {
         this.precio = precio;
     }
@@ -108,9 +121,6 @@ public class Product {
                 .append("nombre",this.getNombre())
                 .append("descripcion",this.getDescripcion())
                 .append("precio",this.getPrecio())
-                .append("existencia",this.getExistencia()).toString();
-    }
-    
-    
-    
+                .append("imagenes",this.getImagenes()).toString();
+    }            
 }

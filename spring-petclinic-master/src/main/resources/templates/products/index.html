@@ -14,7 +14,7 @@ and open the template in the editor.
                             <span style="font-size:1.5em;"><b>Listado de productos</b></span>
                         </div>
                         <div>
-                            <a data-toggle="modal" data-target="#myModal" class="btn btn-default">Reporte activo</a>
+                            <a data-toggle="modal" data-target="#myModal" class="btn btn-default">Reportes</a>
                             <a href="products/create" class="btn btn-default">Agregar nuevo producto</a>
                         </div>
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,17 +31,18 @@ and open the template in the editor.
                                                     <th class="text-center">Descripcion</th>
                                                     <th class="text-center">Precio</th>
                                                     <th class="text-center">Existencia</th>
+                                                    <th class="text-center">Fotografia</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr th:each="product : ${products}">
-                                                    <td class="text-center">
-                                                        <b>Visualizar</b><br>
-                                                        <a class="btn btn-default" th:href="@{/products/__${product.id}__}" th:text="${product.nombre}"/></a>
+                                                    <td class="text-center">                                           
+                                                        <a th:href="@{/products/__${product.id}__}" th:text="${product.nombre}"/></a>
                                                     </td>
                                                     <td class="text-center" th:text="${product.descripcion}"/>
                                                     <td class="text-center" th:text="${product.precio}" />
                                                     <td class="text-center" th:text="${product.existencia}" />
+                                                    <td class="text-center" th:text="${product.imagenes}" />
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -61,18 +62,20 @@ and open the template in the editor.
                                 <th class="text-center">Descripcion</th>
                                 <th class="text-center">Precio</th>
                                 <th class="text-center">Existencia</th>
+                                <th class="text-center">Fotografia</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="product : ${products}">
                                 <td class="text-center">
-                                    <b>Visualizar producto</b><br>
                                     <a class="btn btn-default" th:href="@{/products/__${product.id}__}" th:text="${product.nombre}"/></a>
                                 </td>
                                 <td class="text-center" th:text="${product.descripcion}"/>
                                 <td class="text-center" th:text="${product.precio}" />
                                 <td class="text-center" th:text="${product.existencia}" />
+                                <td class="text-center"> <img style= "width:50px; height: 50px; shadow: 10px 20px 4px#000; border-radius: 50%;" th:src="@{/resources/imagesProduct/__${product.imagenes}__}"/>                             
+                                </td>
                                 <td class="text-center" >
                                     <a class="btn btn-default" th:href="@{/products/__${product.id}__/edit}" th:text="Actualizar"/></a>
                                     <form method="POST" th:action="@{/products/__${product.id}__/delete}" style="display:inline-block;">
