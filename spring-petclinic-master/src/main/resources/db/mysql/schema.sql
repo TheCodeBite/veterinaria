@@ -70,12 +70,3 @@ CREATE TABLE IF NOT EXISTS gallery (
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 
 ) engine=InnoDB;
-
-CREATE TABLE IF NOT EXISTS  users(
-    id INT (4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userName VARCHAR (30),
-    lastName VARCHAR (30),
-    email VARCHAR (30),
-    password VARCHAR (30),
-    status VARCHAR (30)
-) engine=InnoDB;
