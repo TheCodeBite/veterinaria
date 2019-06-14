@@ -58,11 +58,7 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-<<<<<<< Updated upstream
 
-=======
-        
->>>>>>> Stashed changes
     <!-- Databases - Uses HSQL by default -->
     <dependency>
       <groupId>org.hsqldb</groupId>
