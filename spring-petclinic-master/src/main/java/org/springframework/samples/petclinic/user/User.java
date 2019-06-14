@@ -49,7 +49,7 @@ public class User{
         return this.id == null;
     }
     
-    @Column(name="userName")
+    @Column(name="name")
     @NotEmpty
     private String name;
     

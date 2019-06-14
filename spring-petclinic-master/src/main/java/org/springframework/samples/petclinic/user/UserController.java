@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
 public class UserController {
     
+    BCryptPasswordEncoder code = new BCryptPasswordEncoder();
     
     private final UserRepository user;
     
@@ -46,6 +48,7 @@ public class UserController {
         if(result.hasErrors()){
             return "/users/create";
         }else{
+            user.setPassword(code.encode(code.encode(user.getPassword())));
             this.user.save(user);
             return "redirect:/users";
         }
@@ -59,15 +62,16 @@ public class UserController {
     }
     
     @PostMapping("/users/{userId}/edit")
-    public String processUpdateUserForm(@Valid User user, BindingResult result, @PathVariable("userId") int userId) {
-        if (result.hasErrors()) {
-            return "users/edit";
-        } else {
-            user.setId(userId);
-            this.user.save(user);
-            return "redirect:/users";
+        public String processUpdateUserForm(@Valid User user, BindingResult result, @PathVariable("userId") int userId) {
+            if (result.hasErrors()) {
+                return "users/edit";
+            } else {
+                user.setId(userId);
+                user.setPassword(code.encode(code.encode(user.getPassword())));
+                this.user.save(user);
+                return "redirect:/users";
+            }
         }
-    }
     
     @PostMapping("/users/{userId}/delete")
     public String delete(@Valid User user, BindingResult result, @PathVariable("userId") int userId) {
